@@ -1,6 +1,7 @@
 package com.demoqapages.mypackage;
 
 import com.base.mypackage.BasePage;
+import com.utils.mypackage.ClickElement;
 import com.utils.mypackage.ScrollToEndOfPage;
 import org.junit.jupiter.api.Assertions;
 import org.openqa.selenium.By;
@@ -15,6 +16,7 @@ import java.time.Duration;
 public class WidgetPage extends BasePage {
 
     WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(5));
+    Actions actions = new Actions(driver);
 
     public WidgetPage(WebDriver driver) {
         super(driver);
@@ -22,16 +24,13 @@ public class WidgetPage extends BasePage {
 
     public void clickToolTip() {
         new ScrollToEndOfPage().scrollUsingPgDown(driver);
-//        new ScrollToEndOfPage().scrollUsingPgDown(driver);
-        wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector(".show li:nth-of-type(7)")));
-        WebElement toolTipList = driver.findElement(By.cssSelector(".show li:nth-of-type(7)"));
-        toolTipList.click();
+        WebElement toolTipList = wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector(".show li:nth-of-type(7)")));
+        new ClickElement().clickElement(toolTipList, driver);
     }
 
     public void checkToolTip() {
         WebElement toolTipButton = driver.findElement(By.cssSelector("#toolTipButton"));
-        Actions a = new Actions(driver);
-        a.moveToElement(toolTipButton).build().perform();
+        actions.moveToElement(toolTipButton).build().perform();
         WebElement toolTip = driver.findElement(By.cssSelector(".tooltip-inner"));
         String tt = toolTip.getText();
 

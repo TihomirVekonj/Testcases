@@ -1,11 +1,13 @@
 package com.demoqapages.mypackage;
 
 import com.base.mypackage.BasePage;
+import com.utils.mypackage.ClickElement;
 import com.utils.mypackage.ScrollToEndOfPage;
 import org.junit.jupiter.api.Assertions;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.Color;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
@@ -13,7 +15,6 @@ import java.time.Duration;
 
 public class ElementsPage extends BasePage {
 
-    private static final String BUTTON_COLOR = "dc3545";
     private static final String TEXT_TO_CHECK = "C:\\fakepath\\sampleFile.jpeg";
     WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(5));
 
@@ -22,10 +23,9 @@ public class ElementsPage extends BasePage {
     }
 
         public void clickDynamicProperties() {
-        WebElement dynamicProperties = driver.findElement(By.cssSelector(".show li:nth-of-type(9) > .text"));
         new ScrollToEndOfPage().scrollUsingPgDown(driver);
-        wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector(".show li:nth-of-type(9) > .text")));
-        dynamicProperties.click();
+        WebElement dynamicProperties = wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector(".show li:nth-of-type(9) > .text")));
+        new ClickElement().clickElement(dynamicProperties, driver);
     }
 
     public void checkButtonsAndText() {
@@ -35,28 +35,32 @@ public class ElementsPage extends BasePage {
         WebElement enableButton = driver.findElement(By.cssSelector("#enableAfter"));
         String text = randomText.getText();
 
-        //wait until visible
-        wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("#visibleAfter")));
-        WebElement invisibleButton = driver.findElement(By.cssSelector("#visibleAfter"));
+        String textColor2 = colorChange.getCssValue("color");
 
-        String textColor = colorChange.getCssValue("color");
+        //wait until visible
+        WebElement invisibleButton = wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector("#visibleAfter")));
+
+        String textColor1 = colorChange.getCssValue("color");
 
         //assertions
         Assertions.assertEquals("This text has random Id", text, "Error! The desired text is nowhere to be found");
         Assertions.assertTrue(invisibleButton.isDisplayed(), "The desired button is not visible!");
-        Assertions.assertEquals(BUTTON_COLOR, Color.fromString(textColor).asHex(), "The button did not change colors!");
+        Assertions.assertNotEquals(Color.fromString(textColor2).asHex(), Color.fromString(textColor1).asHex(), "The button did not change colors!");
         Assertions.assertTrue(enableButton.isEnabled(), "The desired button is not enabled");
     }
 
     public void clickUploadAndDownload() {
-        WebElement uploadAndDownload = driver.findElement(By.cssSelector(".show li:nth-of-type(8)"));
         new ScrollToEndOfPage().scrollUsingPgDown(driver);
-        wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector(".show li:nth-of-type(8)")));
-        uploadAndDownload.click();
+        WebElement uploadAndDownload = wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector(".show li:nth-of-type(8)")));
+        new ClickElement().clickElement(uploadAndDownload, driver);
+    }
+
+    public void uploadFile() {
         WebElement chooseFile = driver.findElement(By.xpath("//input[@id='uploadFile']"));
         chooseFile.sendKeys("C:\\Users\\Digital Archer\\Work\\Sample pictures\\sampleFile.jpeg");
         WebElement alert = driver.findElement(By.cssSelector("#uploadedFilePath"));
 
+        //assertions
         Assertions.assertEquals(alert.getText(), TEXT_TO_CHECK, "The alert does not display the desired sentence!");
     }
 }

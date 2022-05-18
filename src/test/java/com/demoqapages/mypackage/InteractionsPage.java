@@ -1,6 +1,7 @@
 package com.demoqapages.mypackage;
 
 import com.base.mypackage.BasePage;
+import com.utils.mypackage.ClickElement;
 import com.utils.mypackage.ScrollToEndOfPage;
 import org.junit.jupiter.api.Assertions;
 import org.openqa.selenium.By;
@@ -10,14 +11,15 @@ import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.Color;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
-
 import java.time.Duration;
-import java.util.concurrent.TimeUnit;
+
 
 public class InteractionsPage extends BasePage {
 
 
     private static final String DAND_BG_COLOR = "#4682b4";
+    WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(5));
+    public Actions actions = new Actions(driver);
 
 
     public InteractionsPage(WebDriver driver) {
@@ -25,18 +27,14 @@ public class InteractionsPage extends BasePage {
     }
 
     public void clickDroppable() {
-//        driver.manage().window().maximize();
         new ScrollToEndOfPage().scrollUsingPgDown(driver);
-        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(5));
-        wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector("div:nth-of-type(6) .header-text")));
-        WebElement droppable = driver.findElement(By.cssSelector(".show.element-list li:nth-of-type(4)"));
-        droppable.click();
+        WebElement droppable = wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector(".show li:nth-of-type(4) > .text")));
+        new ClickElement().clickElement(droppable, driver);
     }
 
     public void dragAndDropCheck() {
         WebElement from = driver.findElement(By.cssSelector("#draggable"));
         WebElement to = driver.findElement(By.cssSelector("#simpleDropContainer > #droppable"));
-        Actions actions = new Actions(driver);
 
         actions.moveToElement(from)
                 .moveByOffset(20, -20)

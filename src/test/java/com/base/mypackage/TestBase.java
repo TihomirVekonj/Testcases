@@ -6,7 +6,6 @@ import com.utils.mypackage.ChooseBrowser;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.support.ui.WebDriverWait;
 import java.time.Duration;
 import java.util.Objects;
 
@@ -23,11 +22,12 @@ public abstract class TestBase {
 
     @BeforeEach
     public void startDriver() {
-        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(5));
+        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
         driver.get(DEMOQA_URL);
+        driver.manage().window().maximize();
     }
 
-    public  WebDriver getDriver() {
+    public static WebDriver getDriver() {
         return driver;
     }
 

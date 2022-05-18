@@ -12,5 +12,6 @@ public class UploadTest extends TestBase {
         new NavigationPage(driver).clickOnElements();
         ElementsPage elementsPage = new ElementsPage(driver);
         elementsPage.clickUploadAndDownload();
+        elementsPage.uploadFile();
     }
 }

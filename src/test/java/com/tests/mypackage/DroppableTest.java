@@ -9,7 +9,7 @@ public class DroppableTest extends TestBase {
 
 
     @Test
-    public void dragAndDropTest() throws InterruptedException {
+    public void dragAndDropTest() {
         new NavigationPage(driver).clickOnInteractions();
         InteractionsPage interactionsPage = new InteractionsPage(driver);
         interactionsPage.clickDroppable();

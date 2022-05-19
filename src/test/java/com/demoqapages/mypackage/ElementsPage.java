@@ -1,13 +1,12 @@
 package com.demoqapages.mypackage;
 
 import com.base.mypackage.BasePage;
-import com.utils.mypackage.ClickElement;
+import com.utils.mypackage.ClickIfElementCovered;
 import com.utils.mypackage.ScrollToEndOfPage;
 import org.junit.jupiter.api.Assertions;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.Color;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
@@ -24,8 +23,8 @@ public class ElementsPage extends BasePage {
 
         public void clickDynamicProperties() {
         new ScrollToEndOfPage().scrollUsingPgDown(driver);
-        WebElement dynamicProperties = wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector(".show li:nth-of-type(9) > .text")));
-        new ClickElement().clickElement(dynamicProperties, driver);
+        WebElement dynamicProperties = driver.findElement(By.cssSelector(".show li:nth-of-type(9) > .text"));
+        new ClickIfElementCovered().clickElementWait(dynamicProperties, driver);
     }
 
     public void checkButtonsAndText() {
@@ -51,8 +50,8 @@ public class ElementsPage extends BasePage {
 
     public void clickUploadAndDownload() {
         new ScrollToEndOfPage().scrollUsingPgDown(driver);
-        WebElement uploadAndDownload = wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector(".show li:nth-of-type(8)")));
-        new ClickElement().clickElement(uploadAndDownload, driver);
+        WebElement uploadAndDownload = driver.findElement(By.cssSelector(".show li:nth-of-type(8)"));
+        new ClickIfElementCovered().clickElementWait(uploadAndDownload, driver);
     }
 
     public void uploadFile() {

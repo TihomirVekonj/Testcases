@@ -1,12 +1,10 @@
-package com.tests.mypackage;
+package com.demoqatest.mypackage;
 
-import com.base.mypackage.TestBase;
 import com.demoqapages.mypackage.InteractionsPage;
 import com.demoqapages.mypackage.NavigationPage;
 import org.junit.jupiter.api.Test;
 
-public class DroppableTest extends TestBase {
-
+public class DroppableTest extends DemoQaTestBase {
 
     @Test
     public void dragAndDropTest() {

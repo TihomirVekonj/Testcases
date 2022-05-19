@@ -3,6 +3,7 @@ package com.base.mypackage;
 import com.enums.mypackage.BrowserEnums;
 import com.extensions.mypackage.ScreenshotExtension;
 import com.utils.mypackage.ChooseBrowser;
+import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.openqa.selenium.WebDriver;
@@ -18,12 +19,11 @@ public abstract class TestBase {
     private static final BrowserEnums DEFAULT_BROWSER = BrowserEnums.CHROME;
     private static final String DEFAULT_IP_ADDRESS = "192.168.0.132:4444";
     public static WebDriver driver = getDriverType(driverType);
-    private static final String DEMOQA_URL = "https://demoqa.com";
+
 
     @BeforeEach
     public void startDriver() {
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
-        driver.get(DEMOQA_URL);
         driver.manage().window().maximize();
     }
 

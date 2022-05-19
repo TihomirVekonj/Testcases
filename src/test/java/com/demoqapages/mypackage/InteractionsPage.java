@@ -1,7 +1,7 @@
 package com.demoqapages.mypackage;
 
 import com.base.mypackage.BasePage;
-import com.utils.mypackage.ClickElement;
+import com.utils.mypackage.ClickIfElementCovered;
 import com.utils.mypackage.ScrollToEndOfPage;
 import org.junit.jupiter.api.Assertions;
 import org.openqa.selenium.By;
@@ -9,8 +9,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.Color;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
+
 import java.time.Duration;
 
 
@@ -18,7 +17,6 @@ public class InteractionsPage extends BasePage {
 
 
     private static final String DAND_BG_COLOR = "#4682b4";
-    WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(5));
     public Actions actions = new Actions(driver);
 
 
@@ -28,8 +26,8 @@ public class InteractionsPage extends BasePage {
 
     public void clickDroppable() {
         new ScrollToEndOfPage().scrollUsingPgDown(driver);
-        WebElement droppable = wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector(".show li:nth-of-type(4) > .text")));
-        new ClickElement().clickElement(droppable, driver);
+        WebElement droppable = driver.findElement(By.cssSelector(".show li:nth-of-type(4) > .text"));
+        new ClickIfElementCovered().clickElementWait(droppable, driver);
     }
 
     public void dragAndDropCheck() {

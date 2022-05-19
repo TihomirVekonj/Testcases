@@ -1,12 +1,11 @@
-package com.tests.mypackage;
+package com.demoqatest.mypackage;
 
-import com.base.mypackage.TestBase;
 import com.demoqapages.mypackage.NavigationPage;
 import com.demoqapages.mypackage.WidgetPage;
 import org.junit.jupiter.api.Test;
 
 
-public class WidgetTest extends TestBase {
+public class WidgetTest extends DemoQaTestBase {
 
     @Test
     public void testWidget() {

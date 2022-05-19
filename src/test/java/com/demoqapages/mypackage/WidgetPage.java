@@ -1,14 +1,13 @@
 package com.demoqapages.mypackage;
 
 import com.base.mypackage.BasePage;
-import com.utils.mypackage.ClickElement;
+import com.utils.mypackage.ClickIfElementCovered;
 import com.utils.mypackage.ScrollToEndOfPage;
 import org.junit.jupiter.api.Assertions;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
-import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.time.Duration;
@@ -24,8 +23,8 @@ public class WidgetPage extends BasePage {
 
     public void clickToolTip() {
         new ScrollToEndOfPage().scrollUsingPgDown(driver);
-        WebElement toolTipList = wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector(".show li:nth-of-type(7)")));
-        new ClickElement().clickElement(toolTipList, driver);
+        WebElement toolTipList = driver.findElement(By.cssSelector(".show li:nth-of-type(7)"));
+        new ClickIfElementCovered().clickElementWait(toolTipList, driver);
     }
 
     public void checkToolTip() {

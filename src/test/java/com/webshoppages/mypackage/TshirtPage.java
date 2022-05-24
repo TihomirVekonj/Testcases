@@ -9,6 +9,8 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
+import java.util.Locale;
+
 public class TshirtPage extends BasePage {
 
     public TshirtPage(WebDriver driver) {
@@ -33,16 +35,28 @@ public class TshirtPage extends BasePage {
 
         //add to cart
         new ClickElement().clickElement("[name='Submit'] > span",driver);
+
+        //proceed to checkout
+        new ClickElement().clickElement("[title='Proceed to checkout'] > span", driver);
+        new ClickElement().clickElement(".standard-checkout > span", driver);
     }
 
     public void verifyDataFromOrder() {
 
         String colorAndSizeToCompare = "Blue, M";
         String quantityToCompare = "2";
-        String colorAndSize = driver.findElement(By.cssSelector("#layer_cart_product_attributes")).getText();
-        String quantity = driver.findElement(By.cssSelector("#layer_cart_product_quantity")).getText();
+        WebElement colorAndSize = driver.findElement(By.id("layer_cart_product_attributes"));
+        String cs = colorAndSize.getAttribute("innerText");
+        WebElement quantity = driver.findElement(By.cssSelector("#layer_cart_product_quantity"));
+        String q = quantity.getText();
 
-//        Assertions.assertEquals(colorAndSizeToCompare, colorAndSize, "The color does not match the requirements");
-        Assertions.assertEquals(quantityToCompare, quantity, "The quantity does not match the requirements");
+        Assertions.assertEquals(colorAndSizeToCompare, cs, "The color does not match the requirements");
+        Assertions.assertEquals(quantityToCompare, q, "The quantity does not match the requirements");
+    }
+
+    public void checkSignInLoaded() {
+        WebElement signIn = driver.findElement(By.cssSelector(".step_current > span"));
+        String str = signIn.getAttribute("background");
+        String str1 = "";
     }
 }

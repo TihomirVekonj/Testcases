@@ -11,6 +11,8 @@ public class ProductOrderTest extends WebshopTestBase {
         new WebshopPage(driver).clickTshirts();
         TshirtPage tshirtPage = new TshirtPage(driver);
         tshirtPage.selectProduct();
-        tshirtPage.verifyDataFromOrder();
+//        tshirtPage.verifyDataFromOrder();
+        tshirtPage.checkSignInLoaded();
+
     }
 }

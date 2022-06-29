@@ -15,18 +15,18 @@ public class ScreenshotExtension implements TestWatcher{
         TestBase testbase = (TestBase) context.getRequiredTestInstance();
 
         try {
-            new ScreenShot().takeScreenShotOfVisiblePart(testbase.getDriver());
+            new ScreenShot().takeScreenShotOfVisiblePart(TestBase.getDriver());
         } catch (Exception e) {
             e.printStackTrace();
         } finally {
-            testbase.getDriver().quit();
+            TestBase.getDriver().quit();
         }
     }
 
     @Override
     public void testSuccessful(ExtensionContext context) {
         TestBase tb = (TestBase) context.getRequiredTestInstance();
-        tb.getDriver().quit();
+        TestBase.getDriver().quit();
     }
 
     @Override

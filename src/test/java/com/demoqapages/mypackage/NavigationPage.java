@@ -15,15 +15,18 @@ public class NavigationPage extends BasePage {
         super(driver);
     }
 
-    public void clickOnInteractions() {
+    public InteractionsPage clickOnInteractions() {
         interactionsCard.click();
+        return new InteractionsPage(driver);
     }
 
-    public void clickOnElements() {
+    public ElementsPage clickOnElements() {
         elementsCard.click();
+        return new ElementsPage(driver);
     }
 
-    public void clickOnWidgets() {
+    public WidgetPage clickOnWidgets() {
         widgetsCard.click();
+        return new WidgetPage(driver);
     }
 }

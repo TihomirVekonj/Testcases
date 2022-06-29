@@ -11,12 +11,14 @@ import java.time.Duration;
 
 public class ClickIfElementCovered {
 
-    WebDriverWait wait = new WebDriverWait(TestBase.driver, Duration.ofSeconds(10));
-
     public void clickElementWait(WebElement element, WebDriver driver) {
+
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
         Actions actions = new Actions(driver);
         wait.until(ExpectedConditions.visibilityOf(element));
         actions.moveToElement(element).build().perform();
         actions.click(element).build().perform();
+
+        element.click();
     }
 }

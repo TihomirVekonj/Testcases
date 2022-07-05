@@ -6,6 +6,7 @@ import com.utils.mypackage.ScrollToEndOfPage;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.Actions;
 
 public class ElementsPage extends BasePage {
 
@@ -17,7 +18,7 @@ public class ElementsPage extends BasePage {
         public DynamicPropertyPage clickDynamicProperties() {
         new ScrollToEndOfPage().scrollUsingPgDown(driver);
         WebElement dynamicProperties = driver.findElement(By.cssSelector(".show li:nth-of-type(9) > .text"));
-        new ClickIfElementCovered().clickElementWait(dynamicProperties, driver);
+        new ClickIfElementCovered().clickElementWait(dynamicProperties);
 
         return new DynamicPropertyPage(driver);
     }
@@ -25,7 +26,7 @@ public class ElementsPage extends BasePage {
     public UploadPage clickUploadAndDownload() {
         new ScrollToEndOfPage().scrollUsingPgDown(driver);
         WebElement uploadAndDownload = driver.findElement(By.cssSelector(".show li:nth-of-type(8)"));
-        new ClickIfElementCovered().clickElementWait(uploadAndDownload, driver);
+        new ClickIfElementCovered().clickElementWait(uploadAndDownload);
 
         return new UploadPage(driver);
     }

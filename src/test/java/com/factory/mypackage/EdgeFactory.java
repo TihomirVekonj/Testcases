@@ -14,7 +14,7 @@ public class EdgeFactory extends BaseFactory implements DriverInterface {
     @Override
     public WebDriver setupDriver() {
         WebDriverManager.edgedriver().setup();
-        return new EdgeDriver();
+        return maximize(new EdgeDriver());
     }
 
     @Override

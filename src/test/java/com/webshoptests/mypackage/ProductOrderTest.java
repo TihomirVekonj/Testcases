@@ -20,7 +20,7 @@ public class ProductOrderTest extends WebShopTestBase {
         final TshirtPage tShirtPage = new WebShopPage(getDriver()).clickTShirt();
         final TShirtPopupPage tShirtPopupPage = tShirtPage.SelectTShirt();
 
-        final OrderDataVerificationPopupPage orderDataVerificationPopupPage = tShirtPopupPage.setOrderParameters();
+        final OrderDataVerificationPopupPage orderDataVerificationPopupPage = tShirtPopupPage.setOrderParameters(color);
         Assertions.assertEquals(QUANTITY_TO_COMPARE, orderDataVerificationPopupPage.verifyQuantity(), "The quantity does not match the requirements");
         Assertions.assertEquals(color + ", " + SIZE_TO_COMPARE, orderDataVerificationPopupPage.verifyColorAndSize(), "The color does not match the requirements");
 

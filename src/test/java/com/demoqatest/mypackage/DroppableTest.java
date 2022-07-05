@@ -13,7 +13,6 @@ public class DroppableTest extends DemoQaTestBase {
     private static final String DRAG_AND_DROP_BG_COLOR = "#4682b4";
 
     @Test
-    @Disabled
     public void dragAndDropTest() {
 
         InteractionsPage interactionsPage = new NavigationPage(getDriver()).clickOnInteractions();

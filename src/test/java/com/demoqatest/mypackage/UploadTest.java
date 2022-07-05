@@ -6,14 +6,13 @@ import com.demoqapages.mypackage.UploadPage;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
-import org.openqa.selenium.WebDriver;
+
 
 public class UploadTest extends DemoQaTestBase {
 
     private static final String TEXT_TO_CHECK = "C:\\fakepath\\sampleFile.jpeg";
 
     @Test
-    @Disabled
     public void uploadTest() {
 
         final ElementsPage elementsPage = new NavigationPage(getDriver()).clickOnElements();

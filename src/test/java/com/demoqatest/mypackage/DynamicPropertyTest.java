@@ -12,7 +12,6 @@ public class DynamicPropertyTest extends DemoQaTestBase {
     private static final String RANDOM_TEXT_TO_CHECK = "This text has random Id";
 
     @Test
-    @Disabled
     public void dynamicPropertyTest() {
 
         final ElementsPage elementsPage = new NavigationPage(getDriver()).clickOnElements();

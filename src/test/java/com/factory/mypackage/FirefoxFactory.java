@@ -3,6 +3,7 @@ package com.factory.mypackage;
 import com.interfaces.mypackage.DriverInterface;
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.edge.EdgeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.firefox.FirefoxOptions;
 import org.openqa.selenium.remote.RemoteWebDriver;
@@ -15,7 +16,7 @@ public class FirefoxFactory extends BaseFactory implements DriverInterface {
     @Override
     public WebDriver setupDriver() {
         WebDriverManager.firefoxdriver().setup();
-        return new FirefoxDriver();
+        return maximize(new FirefoxDriver());
     }
 
     @Override

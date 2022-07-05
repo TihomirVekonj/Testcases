@@ -4,14 +4,12 @@ import com.demoqapages.mypackage.NavigationPage;
 import com.demoqapages.mypackage.ToolTipsPage;
 import com.demoqapages.mypackage.WidgetPage;
 import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
 
 public class WidgetTest extends DemoQaTestBase {
 
     @Test
-    @Disabled
     public void testWidget() {
         WidgetPage widgetPage = new NavigationPage(getDriver()).clickOnWidgets();
         ToolTipsPage toolTipsPage = widgetPage.clickToolTip();

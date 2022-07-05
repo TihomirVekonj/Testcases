@@ -1,7 +1,6 @@
 package com.utils.mypackage;
 
 import com.base.mypackage.TestBase;
-import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -9,16 +8,17 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.time.Duration;
 
-public class ClickIfElementCovered {
+public class ClickIfElementCovered extends TestBase {
 
-    public void clickElementWait(WebElement element, WebDriver driver) {
+    Actions actions = new Actions(getDriver());
 
-        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
-        Actions actions = new Actions(driver);
+    public void clickElementWait(WebElement element) {
+
+        WebDriverWait wait = new WebDriverWait(getDriver(), Duration.ofSeconds(10));
         wait.until(ExpectedConditions.visibilityOf(element));
         actions.moveToElement(element).build().perform();
+        actions.pause(Duration.ofSeconds(2));
         actions.click(element).build().perform();
-
-        element.click();
+//        element.click();
     }
 }

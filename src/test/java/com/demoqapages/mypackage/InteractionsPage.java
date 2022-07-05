@@ -6,6 +6,7 @@ import com.utils.mypackage.ScrollToEndOfPage;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.Actions;
 
 
 public class InteractionsPage extends BasePage {
@@ -17,9 +18,9 @@ public class InteractionsPage extends BasePage {
 
     public DroppablePage clickDroppable() {
         new ScrollToEndOfPage().scrollUsingPgDown(driver);
+        new ScrollToEndOfPage().scrollUsingPgDown(driver);
         final WebElement droppable = driver.findElement(By.cssSelector(".show li:nth-of-type(4) > .text"));
-        new ClickIfElementCovered().clickElementWait(droppable, driver);
-
+        new ClickIfElementCovered().clickElementWait(droppable);
         return new DroppablePage(driver);
     }
 }

@@ -16,8 +16,9 @@ public class WidgetPage extends BasePage {
 
     public ToolTipsPage clickToolTip() {
         new ScrollToEndOfPage().scrollUsingPgDown(driver);
-        WebElement toolTipList = driver.findElement(By.cssSelector(".show li:nth-of-type(7)"));
-        new ClickIfElementCovered().clickElementWait(toolTipList, driver);
+        new ScrollToEndOfPage().scrollUsingPgDown(driver);
+        WebElement toolTipList = driver.findElement(By.cssSelector(".show li:nth-of-type(7) > .text"));
+        new ClickIfElementCovered().clickElementWait(toolTipList);
 
         return new ToolTipsPage(driver);
     }

@@ -17,17 +17,10 @@ public class DroppablePage extends BasePage {
     }
 
     public String dragAndDropCheck() {
-        final WebElement from = driver.findElement(By.cssSelector("#draggable"));
-        final WebElement to = driver.findElement(By.cssSelector("#simpleDropContainer > #droppable"));
+        WebElement from = driver.findElement(By.cssSelector("#draggable"));
+        WebElement to = driver.findElement(By.cssSelector("#simpleDropContainer > #droppable"));
 
-        actions.moveToElement(from)
-                .moveByOffset(20, -20)
-                .pause(Duration.ofSeconds(1))
-                .clickAndHold(from)
-                .pause(Duration.ofSeconds(1))
-                .moveToElement(to)
-                .pause(Duration.ofSeconds(1))
-                .release().build().perform();
+        actions.moveToElement(from).pause(Duration.ofSeconds(1)).clickAndHold(from).pause(Duration.ofSeconds(1)).moveToElement(to).release().perform();
 
         final String colorAsRGB = to.getCssValue("background-color");
         return Color.fromString(colorAsRGB).asHex();

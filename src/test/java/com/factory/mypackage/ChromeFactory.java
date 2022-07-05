@@ -14,7 +14,7 @@ public class ChromeFactory extends BaseFactory implements DriverInterface {
     @Override
     public WebDriver setupDriver() {
         WebDriverManager.chromedriver().setup();
-        return new ChromeDriver();
+        return maximize(new ChromeDriver());
     }
 
     @Override

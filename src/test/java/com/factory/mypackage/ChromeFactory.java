@@ -6,7 +6,6 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.remote.RemoteWebDriver;
-
 import java.net.MalformedURLException;
 import java.net.URL;
 
@@ -15,7 +14,7 @@ public class ChromeFactory extends BaseFactory implements DriverInterface {
     @Override
     public WebDriver setupDriver() {
         WebDriverManager.chromedriver().setup();
-        return new ChromeDriver();
+        return maximize(new ChromeDriver());
     }
 
     @Override

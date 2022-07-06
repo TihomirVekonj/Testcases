@@ -7,26 +7,27 @@ import org.junit.jupiter.api.extension.TestWatcher;
 import java.util.Optional;
 
 
-public class ScreenshotExtension implements TestWatcher{
+public class ScreenshotExtension implements TestWatcher {
 
     @Override
     public void testFailed(ExtensionContext context, Throwable cause) {
-
         TestBase testbase = (TestBase) context.getRequiredTestInstance();
-
         try {
             new ScreenShot().takeScreenShotOfVisiblePart(testbase.getDriver());
         } catch (Exception e) {
             e.printStackTrace();
         } finally {
+            testbase.getDriver().close();
             testbase.getDriver().quit();
+            testbase.removeDriver();
         }
     }
 
     @Override
     public void testSuccessful(ExtensionContext context) {
-        TestBase tb = (TestBase) context.getRequiredTestInstance();
-        tb.getDriver().quit();
+        TestBase testbase = (TestBase) context.getRequiredTestInstance();
+        testbase.getDriver().close();
+        testbase.removeDriver();
     }
 
     @Override

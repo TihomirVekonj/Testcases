@@ -15,9 +15,8 @@ public class EdgeHeadlessFactory extends BaseFactory implements DriverInterface 
     @Override
     public WebDriver setupDriver() {
         EdgeOptions options = new EdgeOptions();
-        options.addArguments("--headless","--window-size=1920,1200");
+        options.addArguments("--headless","--window-size=1552,840");
         WebDriverManager.edgedriver().setup();
-
         return new EdgeDriver(options);
     }
 
